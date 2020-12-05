@@ -1,0 +1,42 @@
+#titleDiv {
+    
+    
+}
+
+.containerHeader {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    background-color: aqua;
+    margin-bottom: 60px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#whereUwannaRide {
+    display: block;
+    
+    align-self: center;
+    
+    flex-wrap: wrap;
+    
+}
+
+#dropdown {
+    display: block;
+    
+    align-self: center;
+}
+
+#break {
+    width: 100%;
+    margin: 20px;
+}
+
+#btn {
+    margin: 20px;
+}
