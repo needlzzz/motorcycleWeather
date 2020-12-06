@@ -32,11 +32,23 @@
     align-self: center;
 }
 
-#break {
+.break {
     width: 100%;
     margin: 20px;
 }
 
 #btn {
     margin: 20px;
+}
+
+.weatherDataBox {
+
+}
+
+.col-md-8 {
+    background-color: red;
+}
+
+#test {
+    background-color: blueviolet;
 }

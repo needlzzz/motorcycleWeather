@@ -1,22 +1,60 @@
-let xhrWeather = new XMLHttpRequest();
-let URL = "https://api.climacell.co/v3/weather/realtime?lat=47.79698336215463&lon=8.171960521502825&location_id=ger&unit_system=si&fields=precipitation%2Ctemp&apikey=me2Qm6ZYZ7V8CUhZ5FopsDhQdsqmeV6a"
 
 
 
-xhrWeather.open("GET", URL, false);
-xhrWeather.setRequestHeader('content-type', 'application/json');
-xhrWeather.setRequestHeader('apikey', 'me2Qm6ZYZ7V8CUhZ5FopsDhQdsqmeV6a');
 
-let container = document.querySelector(".container");
 
-container.addEventListener("submit", (e) => {
-    e.preventDefault();
+let getWeatherBtn = document.querySelector("#btn");
+
+getWeatherBtn.addEventListener("click", e => {
+    console.log("this is the statechange function")
+
     stateChange();
 })
 function stateChange() {
+
+    let dropdownElmt = document.getElementById("dropdownMenu");
+    let dropdownValue = dropdownElmt.value;
+    let URL = ""
+
+    if (dropdownValue === 'schluchsee') {
+        URL = "https://api.climacell.co/v3/weather/realtime?lat=47.79698336215463&lon=8.171960521502825&location_id=ger&unit_system=si&fields=precipitation%2Ctemp&apikey=me2Qm6ZYZ7V8CUhZ5FopsDhQdsqmeV6a"
+    }
+
+    if (dropdownValue === 'bonndorf') {
+        URL = "https://api.climacell.co/v3/weather/realtime?lat=47.821811301202914&lon=8.341426214856225&unit_system=si&fields=temp%2Cprecipitation&apikey=me2Qm6ZYZ7V8CUhZ5FopsDhQdsqmeV6a"
+    }
+
+    if (dropdownValue === 'todtmoos') {
+        URL = "https://api.climacell.co/v3/weather/realtime?lat=47.73990890361475&lon=7.997162897621155&unit_system=si&fields=temp%2Cprecipitation&apikey=me2Qm6ZYZ7V8CUhZ5FopsDhQdsqmeV6a"
+    }
+
+    if (dropdownValue === 'sustenpass') {
+        URL = "https://api.climacell.co/v3/weather/realtime?lat=46.730015865232374&lon=8.447023369033596&unit_system=si&fields=temp%2Cprecipitation&apikey=me2Qm6ZYZ7V8CUhZ5FopsDhQdsqmeV6a"
+
+    }
+
+    console.log("this is the statechange function")
+    let xhrWeather = new XMLHttpRequest();
+
+    xhrWeather.open("GET", URL, true);
+    xhrWeather.setRequestHeader('content-type', 'application/json');
+    xhrWeather.setRequestHeader('apikey', 'me2Qm6ZYZ7V8CUhZ5FopsDhQdsqmeV6a');
+
     xhrWeather.onreadystatechange = function () {
 
+
+
+
         if (xhrWeather.readyState === 4 && xhrWeather.status === 200) {
+
+            //get value from dropdown menu
+
+            console.log(dropdownValue);
+
+
+
+
+
 
             let jsonParsed = JSON.parse(xhrWeather.responseText);
             let temps = Object.values(jsonParsed);
@@ -26,7 +64,8 @@ function stateChange() {
             let node = document.createElement("div")
             let textnode = document.createTextNode(tempNumber)
             node.appendChild(textnode);
-            document.querySelector('container').appendChild(node)
+            document.querySelector('.container').appendChild(node)
+
 
 
             console.log(tempNumber)
@@ -43,8 +82,8 @@ function stateChange() {
             console.log("bad stuff")
         }
     };
-
+    xhrWeather.send()
 };
-xhrWeather.send()
+
 
 47.79698336215463, 8.171960521502825
