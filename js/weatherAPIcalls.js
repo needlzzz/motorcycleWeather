@@ -33,7 +33,7 @@ function stateChange() {
 
     }
 
-    console.log("this is the statechange function")
+
     let xhrWeather = new XMLHttpRequest();
 
     xhrWeather.open("GET", URL, true);
@@ -49,7 +49,7 @@ function stateChange() {
 
             //get value from dropdown menu
 
-            console.log(dropdownValue);
+
 
 
 
@@ -62,7 +62,8 @@ function stateChange() {
             let tempNumber = temps[2]['value'];
             // document.getElementById("weatherContent").innerHTML =
             let node = document.createElement("div")
-            let textnode = document.createTextNode(tempNumber)
+            node.setAttribute("class", "col-md-6")
+            let textnode = document.createTextNode("The current temperature is: " + tempNumber + "  Celsius")
             node.appendChild(textnode);
             document.querySelector('.container').appendChild(node)
 
