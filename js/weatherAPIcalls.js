@@ -21,7 +21,7 @@ function stateChange() {
         URL = 'https://api.climacell.co/v3/weather/realtime?lat=47.798916919872866&lon=8.183037307776177&unit_system=si&fields=temp%2Cprecipitation_type&apikey=me2Qm6ZYZ7V8CUhZ5FopsDhQdsqmeV6a'
         regionImage = "../img/schluchsee-blick.jpg"
     }
-    
+
     if (dropdownValue === 'schauinsland') {
         URL = 'https://api.climacell.co/v3/weather/realtime?lat=47.91368287150694&lon=7.898325385069348&unit_system=si&fields=temp%2Cprecipitation_type&apikey=me2Qm6ZYZ7V8CUhZ5FopsDhQdsqmeV6a'
         regionImage = "../img/schauinsland.jpg"
@@ -37,8 +37,8 @@ function stateChange() {
         regionImage = "../img/sustenpass.jpg";
     }
 
-    46.733239716311395, 8.432407803492424
-    
+
+
 
     let xhrWeather = new XMLHttpRequest();
 
@@ -57,29 +57,30 @@ function stateChange() {
             //get value from dropdown menu
 
             if (clicks > 0) {
-                
+
             }
 
-            
+
             //this code block creates the DOM nodes
 
             clicks = clicks++;
-            
- 
+
+
             let temps = Object.values(JSON.parse(xhrWeather.responseText));
             // let tempUnit = temps[2]['units']
-/*             let tempNumber = temps[2]['value'];
-            let precipitationValue = temps[3]['value']; */
-            
+            /*             let tempNumber = temps[2]['value'];
+                        let precipitationValue = temps[3]['value']; */
+
             let weatherTextNode = document.createElement("div");
             let regionPictureNode = document.createElement("div");
             let weatherParagraph = document.createElement("p");
             let tempParagraph = document.createElement("p");
-            
+
             weatherTextNode.setAttribute("class", "col-md-6");
             weatherTextNode.setAttribute("id", "weatherTextDiv")
             regionPictureNode.setAttribute("class", "col-md-6");
             weatherParagraph.setAttribute("id", "weatherP");
+            tempParagraph.setAttribute("id", "tempP");
 
             let imagenode = document.createElement("img");
             imagenode.setAttribute('width', '350px');
@@ -89,26 +90,33 @@ function stateChange() {
             let precipitationTextnode = document.createTextNode("Is there currently any rain? " + temps[3]['value']);
             tempParagraph.appendChild(tempTextnode);
             weatherTextNode.appendChild(tempParagraph);
-            
-            
+
+
             weatherParagraph.appendChild(precipitationTextnode)
             weatherTextNode.appendChild(weatherParagraph);
-            
+
             regionPictureNode.appendChild(imagenode);
             document.querySelector('.container').appendChild(weatherTextNode)
             document.querySelector('.container').appendChild(regionPictureNode)
-   
+
+            let existingElementCheck = !!document.querySelector(".container");
+            let containerElement = document.querySelector(".container");
+
+            if (existingElementCheck) {
+                console.log(existingElementCheck)
+
+                containerElement.replaceChild(weatherTextNode, weatherTextNode)
+
+            }
 
 
 
-            
-            
 
 
-            /*         for (let i = 0; i < jsonParsed.length; i++) {
-                        let fetchedData = jsonParsed[i]['temp']['units'];
-                        console.log(fetchedData)
-                    } */
+
+
+
+
 
         }
         else {
