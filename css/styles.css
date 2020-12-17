@@ -1,17 +1,41 @@
+html {
+    background-color: ;
+}
+
+body {
+    font-family: 'Judson', serif;
+   }
+   
+   h1, h2, h3, h4, h5, h6 {
+    font-family: 'Archivo Black', sans-serif;
+   }
+
 #titleDiv {
     
     
+}
+
+label {
+    margin-right: 20px;
 }
 
 .containerHeader {
     display: flex;
     justify-content: center;
     flex-direction: row;
-    background-color: aqua;
+    background-color: #746F6F;
     margin-bottom: 60px;
+    height: 200px;
+    align-items: center;
 }
 
 .container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.containerDropdown {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -51,4 +75,8 @@
 
 #test {
     background-color: blueviolet;
+}
+
+#weatherTextDiv {
+    background-color: pink;
 }

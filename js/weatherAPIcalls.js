@@ -14,25 +14,31 @@ function stateChange() {
 
     let dropdownElmt = document.getElementById("dropdownMenu");
     let dropdownValue = dropdownElmt.value;
-    let URL = ""
+    let URL = "";
+    let regionImage = "";
 
     if (dropdownValue === 'schluchsee') {
-        URL = "https://api.climacell.co/v3/weather/realtime?lat=47.79698336215463&lon=8.171960521502825&location_id=ger&unit_system=si&fields=precipitation%2Ctemp&apikey=me2Qm6ZYZ7V8CUhZ5FopsDhQdsqmeV6a"
+        URL = 'https://api.climacell.co/v3/weather/realtime?lat=47.798916919872866&lon=8.183037307776177&unit_system=si&fields=temp%2Cprecipitation_type&apikey=me2Qm6ZYZ7V8CUhZ5FopsDhQdsqmeV6a'
+        regionImage = "../img/schluchsee-blick.jpg"
     }
-
-    if (dropdownValue === 'bonndorf') {
-        URL = "https://api.climacell.co/v3/weather/realtime?lat=47.821811301202914&lon=8.341426214856225&unit_system=si&fields=temp%2Cprecipitation&apikey=me2Qm6ZYZ7V8CUhZ5FopsDhQdsqmeV6a"
+    
+    if (dropdownValue === 'schauinsland') {
+        URL = 'https://api.climacell.co/v3/weather/realtime?lat=47.91368287150694&lon=7.898325385069348&unit_system=si&fields=temp%2Cprecipitation_type&apikey=me2Qm6ZYZ7V8CUhZ5FopsDhQdsqmeV6a'
+        regionImage = "../img/schauinsland.jpg"
     }
 
     if (dropdownValue === 'todtmoos') {
-        URL = "https://api.climacell.co/v3/weather/realtime?lat=47.73990890361475&lon=7.997162897621155&unit_system=si&fields=temp%2Cprecipitation&apikey=me2Qm6ZYZ7V8CUhZ5FopsDhQdsqmeV6a"
+        URL = 'https://api.climacell.co/v3/weather/realtime?lat=47.7416329953509&lon=8.004721615344211&unit_system=si&fields=temp%2Cprecipitation_type&apikey=me2Qm6ZYZ7V8CUhZ5FopsDhQdsqmeV6a'
+        regionImage = "../img/todtmoos.jpg"
     }
 
     if (dropdownValue === 'sustenpass') {
-        URL = "https://api.climacell.co/v3/weather/realtime?lat=46.730015865232374&lon=8.447023369033596&unit_system=si&fields=temp%2Cprecipitation&apikey=me2Qm6ZYZ7V8CUhZ5FopsDhQdsqmeV6a"
-
+        URL = 'https://api.climacell.co/v3/weather/realtime?lat=46.733239716311395&lon=8.432407803492424&unit_system=si&fields=temp%2Cprecipitation_type&apikey=me2Qm6ZYZ7V8CUhZ5FopsDhQdsqmeV6a'
+        regionImage = "../img/sustenpass.jpg";
     }
 
+    46.733239716311395, 8.432407803492424
+    
 
     let xhrWeather = new XMLHttpRequest();
 
@@ -42,30 +48,51 @@ function stateChange() {
 
     xhrWeather.onreadystatechange = function () {
 
-
+        let clicks = 0;
+        let node
+        let node2
 
 
         if (xhrWeather.readyState === 4 && xhrWeather.status === 200) {
-
+            console.log(xhrWeather.responseText)
             //get value from dropdown menu
 
+            if (clicks > 0) {
+                
+            }
 
+            
+            //this code block creates the DOM nodes
 
-
-
-
-
-
+            clicks = clicks++;
+            
             let jsonParsed = JSON.parse(xhrWeather.responseText);
             let temps = Object.values(jsonParsed);
             let tempUnit = temps[2]['units']
             let tempNumber = temps[2]['value'];
-            // document.getElementById("weatherContent").innerHTML =
-            let node = document.createElement("div")
-            node.setAttribute("class", "col-md-6")
-            let textnode = document.createTextNode("The current temperature is: " + tempNumber + "  Celsius")
-            node.appendChild(textnode);
-            document.querySelector('.container').appendChild(node)
+            let precipitationValue = temps[3]['value'];
+            
+            let weatherTextNode = document.createElement("div");
+            let regionPictureNode = document.createElement("div");
+            let weatherParagraph = document.createElement("p");
+            
+            weatherTextNode.setAttribute("class", "col-md-6");
+            weatherTextNode.setAttribute("id", "weatherTextDiv")
+            regionPictureNode.setAttribute("class", "col-md-6");
+            weatherParagraph.setAttribute("id", "weatherP");
+
+            let imagenode = document.createElement("img");
+            imagenode.setAttribute('width', '350px');
+            imagenode.setAttribute('height', '200px');
+            imagenode.src = regionImage;
+            let tempTextnode = document.createTextNode("The current temperature is: " + tempNumber + "  Celsius");
+            let precipitationTextnode = document.createTextNode("Is there currently any rain? " + precipitationValue);
+            weatherTextNode.appendChild(tempTextnode);
+            weatherTextNode.appendChild(precipitationTextnode);
+            regionPictureNode.appendChild(imagenode);
+            document.querySelector('.container').appendChild(weatherTextNode)
+            document.querySelector('.container').appendChild(regionPictureNode)
+   
 
 
 
