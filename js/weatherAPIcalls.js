@@ -49,8 +49,7 @@ function stateChange() {
     xhrWeather.onreadystatechange = function () {
 
         let clicks = 0;
-        let node
-        let node2
+
 
 
         if (xhrWeather.readyState === 4 && xhrWeather.status === 200) {
@@ -66,15 +65,16 @@ function stateChange() {
 
             clicks = clicks++;
             
-            let jsonParsed = JSON.parse(xhrWeather.responseText);
-            let temps = Object.values(jsonParsed);
-            let tempUnit = temps[2]['units']
-            let tempNumber = temps[2]['value'];
-            let precipitationValue = temps[3]['value'];
+ 
+            let temps = Object.values(JSON.parse(xhrWeather.responseText));
+            // let tempUnit = temps[2]['units']
+/*             let tempNumber = temps[2]['value'];
+            let precipitationValue = temps[3]['value']; */
             
             let weatherTextNode = document.createElement("div");
             let regionPictureNode = document.createElement("div");
             let weatherParagraph = document.createElement("p");
+            let tempParagraph = document.createElement("p");
             
             weatherTextNode.setAttribute("class", "col-md-6");
             weatherTextNode.setAttribute("id", "weatherTextDiv")
@@ -85,10 +85,15 @@ function stateChange() {
             imagenode.setAttribute('width', '350px');
             imagenode.setAttribute('height', '200px');
             imagenode.src = regionImage;
-            let tempTextnode = document.createTextNode("The current temperature is: " + tempNumber + "  Celsius");
-            let precipitationTextnode = document.createTextNode("Is there currently any rain? " + precipitationValue);
-            weatherTextNode.appendChild(tempTextnode);
-            weatherTextNode.appendChild(precipitationTextnode);
+            let tempTextnode = document.createTextNode("The current temperature is: " + temps[2]['value'] + "  Celsius");
+            let precipitationTextnode = document.createTextNode("Is there currently any rain? " + temps[3]['value']);
+            tempParagraph.appendChild(tempTextnode);
+            weatherTextNode.appendChild(tempParagraph);
+            
+            
+            weatherParagraph.appendChild(precipitationTextnode)
+            weatherTextNode.appendChild(weatherParagraph);
+            
             regionPictureNode.appendChild(imagenode);
             document.querySelector('.container').appendChild(weatherTextNode)
             document.querySelector('.container').appendChild(regionPictureNode)
@@ -96,8 +101,8 @@ function stateChange() {
 
 
 
-            console.log(tempNumber)
-            console.log(Object.values(jsonParsed))
+            
+            
 
 
             /*         for (let i = 0; i < jsonParsed.length; i++) {
@@ -114,4 +119,3 @@ function stateChange() {
 };
 
 
-47.79698336215463, 8.171960521502825
