@@ -25,7 +25,7 @@ label {
     align-items: center;
 }
 
-.container {
+.container, .bigContainer {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -81,3 +81,4 @@ label {
 #tempP {
 
 }
+

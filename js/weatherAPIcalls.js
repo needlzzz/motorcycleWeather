@@ -9,7 +9,7 @@ getWeatherBtn.addEventListener("click", e => {
     console.log("this is the statechange function")
 
     stateChange();
-})
+});
 function stateChange() {
 
     let dropdownElmt = document.getElementById("dropdownMenu");
@@ -48,7 +48,7 @@ function stateChange() {
 
     xhrWeather.onreadystatechange = function () {
 
-        let clicks = 0;
+        
 
 
 
@@ -56,25 +56,54 @@ function stateChange() {
             console.log(xhrWeather.responseText)
             //get value from dropdown menu
 
-            if (clicks > 0) {
+          
+            let temps = Object.values(JSON.parse(xhrWeather.responseText));
+            let weatherTextNode = document.createElement("div");
+            let regionPictureNode = document.createElement("div");
+            let weatherParagraph = document.createElement("p");
+            let tempParagraph = document.createElement("p");
+            
+
+            let existingElementCheck = !!document.querySelector(".bigContainer");
+            
+            if (existingElementCheck) {
+                
+                let bigContainer = document.querySelector(".bigContainer");
+                let container = document.querySelector(".container")
+                console.log(container)
+                
+
+
+                console.log(existingElementCheck)
+                container = document.createElement("div")
+                console.log(container)
+                let newContainer = document.createElement("div")
+                console.log(newContainer)
+                newContainer.setAttribute("class", "newContainer")
+                newContainer = newContainer.appendChild(weatherTextNode)
+                newContainer = newContainer.appendChild(regionPictureNode)
+
+
+                
+                bigContainer.replaceChild(newContainer, container)
+
+/*                 let testDiv = document.createElement("div")
+                containerElement.replaceChild(testDiv, weatherTextNode) */
+                // newContainer = containerElement.replaceChild(weatherTextNode, weatherTextNode)
 
             }
 
 
             //this code block creates the DOM nodes
 
-            clicks = clicks++;
+            
 
 
-            let temps = Object.values(JSON.parse(xhrWeather.responseText));
-            // let tempUnit = temps[2]['units']
-            /*             let tempNumber = temps[2]['value'];
-                        let precipitationValue = temps[3]['value']; */
+            
 
-            let weatherTextNode = document.createElement("div");
-            let regionPictureNode = document.createElement("div");
-            let weatherParagraph = document.createElement("p");
-            let tempParagraph = document.createElement("p");
+
+
+           
 
             weatherTextNode.setAttribute("class", "col-md-6");
             weatherTextNode.setAttribute("id", "weatherTextDiv")
@@ -96,18 +125,17 @@ function stateChange() {
             weatherTextNode.appendChild(weatherParagraph);
 
             regionPictureNode.appendChild(imagenode);
-            document.querySelector('.container').appendChild(weatherTextNode)
-            document.querySelector('.container').appendChild(regionPictureNode)
+/*             document.querySelector('.container').appendChild(weatherTextNode)
+            document.querySelector('.container').appendChild(regionPictureNode) */
 
-            let existingElementCheck = !!document.querySelector(".container");
-            let containerElement = document.querySelector(".container");
+            document.querySelector('.bigContainer').appendChild(weatherTextNode)
+            document.querySelector('.bigContainer').appendChild(regionPictureNode)
 
-            if (existingElementCheck) {
-                console.log(existingElementCheck)
 
-                containerElement.replaceChild(weatherTextNode, weatherTextNode)
 
-            }
+           
+
+
 
 
 
