@@ -37,7 +37,16 @@ function stateChange() {
         regionImage = "../img/sustenpass.jpg";
     }
 
+    if (dropdownValue === 'grimselpass') {
+        URL = 'https://api.climacell.co/v3/weather/realtime?lat=46.56157252905508&lon=8.33759132470081&unit_system=si&fields=temp%2Cprecipitation_type&apikey=me2Qm6ZYZ7V8CUhZ5FopsDhQdsqmeV6a'
+        regionImage = '../img/grimselpass.jpg';
+    }
 
+    if (dropdownValue === 'gotthardpass') {
+        URL = 'https://api.climacell.co/v3/weather/realtime?lat=46.55909324107193&lon=8.562292073220776&unit_system=si&fields=temp%2Cprecipitation_type&apikey=me2Qm6ZYZ7V8CUhZ5FopsDhQdsqmeV6a'
+        regionImage = '../img/gotthardpass.jpg'
+    }
+    
 
 
     let xhrWeather = new XMLHttpRequest();
@@ -85,7 +94,7 @@ function stateChange() {
 
 
                 
-                bigContainer.replaceChild(newContainer, container)
+                /* bigContainer.replaceChild(newContainer, container) */
 
 /*                 let testDiv = document.createElement("div")
                 containerElement.replaceChild(testDiv, weatherTextNode) */
@@ -105,9 +114,9 @@ function stateChange() {
 
            
 
-            weatherTextNode.setAttribute("class", "col-md-6");
+            weatherTextNode.setAttribute("class", "displayBoxes");
             weatherTextNode.setAttribute("id", "weatherTextDiv")
-            regionPictureNode.setAttribute("class", "col-md-6");
+            regionPictureNode.setAttribute("class", "displayBoxes");
             weatherParagraph.setAttribute("id", "weatherP");
             tempParagraph.setAttribute("id", "tempP");
 
@@ -116,7 +125,7 @@ function stateChange() {
             imagenode.setAttribute('height', '200px');
             imagenode.src = regionImage;
             let tempTextnode = document.createTextNode("The current temperature is: " + temps[2]['value'] + "  Celsius");
-            let precipitationTextnode = document.createTextNode("Is there currently any rain? " + temps[3]['value']);
+            let precipitationTextnode = document.createTextNode('Is there currently any rain or other precipitation? ' +  temps[3]['value']); 
             tempParagraph.appendChild(tempTextnode);
             weatherTextNode.appendChild(tempParagraph);
 
