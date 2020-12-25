@@ -46,7 +46,7 @@ function stateChange() {
         URL = 'https://api.climacell.co/v3/weather/realtime?lat=46.55909324107193&lon=8.562292073220776&unit_system=si&fields=temp%2Cprecipitation_type&apikey=me2Qm6ZYZ7V8CUhZ5FopsDhQdsqmeV6a'
         regionImage = '../img/gotthardpass.jpg'
     }
-    
+
 
 
     let xhrWeather = new XMLHttpRequest();
@@ -57,7 +57,7 @@ function stateChange() {
 
     xhrWeather.onreadystatechange = function () {
 
-        
+
 
 
 
@@ -65,22 +65,22 @@ function stateChange() {
             console.log(xhrWeather.responseText)
             //get value from dropdown menu
 
-          
+
             let temps = Object.values(JSON.parse(xhrWeather.responseText));
             let weatherTextNode = document.createElement("div");
             let regionPictureNode = document.createElement("div");
             let weatherParagraph = document.createElement("p");
             let tempParagraph = document.createElement("p");
-            
+
 
             let existingElementCheck = !!document.querySelector(".bigContainer");
-            
+
             if (existingElementCheck) {
-                
+
                 let bigContainer = document.querySelector(".bigContainer");
                 let container = document.querySelector(".container")
                 console.log(container)
-                
+
 
 
                 console.log(existingElementCheck)
@@ -93,11 +93,11 @@ function stateChange() {
                 newContainer = newContainer.appendChild(regionPictureNode)
 
 
-                
+
                 /* bigContainer.replaceChild(newContainer, container) */
 
-/*                 let testDiv = document.createElement("div")
-                containerElement.replaceChild(testDiv, weatherTextNode) */
+                /*                 let testDiv = document.createElement("div")
+                                containerElement.replaceChild(testDiv, weatherTextNode) */
                 // newContainer = containerElement.replaceChild(weatherTextNode, weatherTextNode)
 
             }
@@ -105,27 +105,28 @@ function stateChange() {
 
             //this code block creates the DOM nodes
 
-            
-
-
-            
 
 
 
-           
+
+
+
+
+
 
             weatherTextNode.setAttribute("class", "displayBoxes");
-            weatherTextNode.setAttribute("id", "weatherTextDiv")
+            weatherTextNode.setAttribute("id", "weatherTextDiv");
             regionPictureNode.setAttribute("class", "displayBoxes");
+            regionPictureNode.setAttribute("id", "regionPictureDiv")
             weatherParagraph.setAttribute("id", "weatherP");
             tempParagraph.setAttribute("id", "tempP");
 
             let imagenode = document.createElement("img");
-            imagenode.setAttribute('width', '350px');
-            imagenode.setAttribute('height', '200px');
+            /*             imagenode.setAttribute('width', '350px');
+                        imagenode.setAttribute('height', '200px'); */
             imagenode.src = regionImage;
             let tempTextnode = document.createTextNode("The current temperature is: " + temps[2]['value'] + "  Celsius");
-            let precipitationTextnode = document.createTextNode('Is there currently any rain or other precipitation? ' +  temps[3]['value']); 
+            let precipitationTextnode = document.createTextNode('Is there currently any rain or other precipitation? ' + temps[3]['value']);
             tempParagraph.appendChild(tempTextnode);
             weatherTextNode.appendChild(tempParagraph);
 
@@ -134,15 +135,15 @@ function stateChange() {
             weatherTextNode.appendChild(weatherParagraph);
 
             regionPictureNode.appendChild(imagenode);
-/*             document.querySelector('.container').appendChild(weatherTextNode)
-            document.querySelector('.container').appendChild(regionPictureNode) */
+            /*             document.querySelector('.container').appendChild(weatherTextNode)
+                        document.querySelector('.container').appendChild(regionPictureNode) */
 
             document.querySelector('.bigContainer').appendChild(weatherTextNode)
             document.querySelector('.bigContainer').appendChild(regionPictureNode)
 
 
 
-           
+
 
 
 

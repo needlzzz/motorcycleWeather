@@ -13,6 +13,10 @@ body {
     font-family: 'Archivo Black', sans-serif;
    }
 
+img {
+    height: 100%;
+    width: 100%;
+}
 
 label {
     margin-right: 20px;
@@ -26,7 +30,7 @@ header {
     display: flex;
     justify-content: center;
     flex-direction: row;
-    background-color: #EBECED;
+    background-color: #CBC5C1;
     margin-bottom: 60px;
     height: 200px;
     align-items: center;
@@ -38,6 +42,7 @@ header {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    max-width: 100%;
 }
 
 .bigContainer {
@@ -88,6 +93,8 @@ header {
     background-color:#A2AAB0;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: center;
+    padding: 20px;
     
 }
 
@@ -96,7 +103,16 @@ header {
 }
 
 .displayBoxes {
-    background-color: green;
-    padding: 20px;
+    background-color: #A2AAB0;
+    margin: 20px;
+    flex: 1 1 0px
+    border-radius: 25px;
+    box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+    
+}
+
+#regionPictureDiv {
+    display: flex;
+    justify-content: center;
 }
 
