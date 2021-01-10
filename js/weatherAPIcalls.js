@@ -67,37 +67,50 @@ function stateChange() {
 
 
             let temps = Object.values(JSON.parse(xhrWeather.responseText));
+
             let weatherTextNode = document.createElement("div");
+            let getWeatherTextNode = document.getElementById("weatherTextDiv")
             let regionPictureNode = document.createElement("div");
             let weatherParagraph = document.createElement("p");
             let tempParagraph = document.createElement("p");
 
 
-            let existingElementCheck = !!document.querySelector(".bigContainer");
 
-            if (existingElementCheck) {
+            let existingElementCheck = !!document.querySelector(".bigContainer").innerHTML === "";
 
-                let bigContainer = document.querySelector(".bigContainer");
-                let container = document.querySelector(".container")
-                console.log(container)
 
+            if (existingElementCheck == false) {
+
+                getWeatherTextNode.remove()
+                console.log(weatherTextNode)
 
 
                 console.log(existingElementCheck)
-                container = document.createElement("div")
-                console.log(container)
-                let newContainer = document.createElement("div")
-                console.log(newContainer)
-                newContainer.setAttribute("class", "newContainer")
-                newContainer = newContainer.appendChild(weatherTextNode)
-                newContainer = newContainer.appendChild(regionPictureNode)
 
 
 
-                /* bigContainer.replaceChild(newContainer, container) */
 
-                /*                 let testDiv = document.createElement("div")
-                                containerElement.replaceChild(testDiv, weatherTextNode) */
+                /*                 let bigContainer = document.querySelector(".bigContainer");
+                                let container = document.querySelector(".container")
+                                console.log(container)
+                
+                
+                
+                                console.log(existingElementCheck)
+                                container = document.createElement("div")
+                                console.log(container)
+                                let newContainer = document.createElement("div")
+                                console.log(newContainer)
+                                newContainer.setAttribute("class", "newContainer")
+                                newContainer = newContainer.appendChild(weatherTextNode)
+                                newContainer = newContainer.appendChild(regionPictureNode)
+                
+                
+                
+                                bigContainer.replaceChild(newContainer, container) 
+                
+                                 let testDiv = document.createElement("div")
+                                                containerElement.replaceChild(testDiv, weatherTextNode) */
                 // newContainer = containerElement.replaceChild(weatherTextNode, weatherTextNode)
 
             }
