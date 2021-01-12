@@ -28,14 +28,19 @@ header {
 }
 .containerHeader {
     display: flex;
-    justify-content: center;
-    flex-direction: row;
+    justify-content: space-around;
     background-color: #CBC5C1;
     margin-bottom: 60px;
     height: 200px;
-    align-items: center;
+    align-items: ;
   
 
+}
+
+#titleDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container, .bigContainer {

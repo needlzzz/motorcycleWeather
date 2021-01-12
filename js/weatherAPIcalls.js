@@ -74,14 +74,14 @@ function stateChange() {
             let weatherParagraph = document.createElement("p");
             let tempParagraph = document.createElement("p");
 
+            console.log(getWeatherTextNode)
 
-
-            let existingElementCheck = !!document.querySelector(".bigContainer").innerHTML === "";
-
-
+            let existingElementCheck = !document.querySelector(".bigContainer").innerHTML === "";
+            console.log(weatherTextNode)
+            console.log(existingElementCheck)
             if (existingElementCheck == false) {
 
-                getWeatherTextNode.remove()
+                weatherTextNode.remove()
                 console.log(weatherTextNode)
 
 
@@ -138,13 +138,15 @@ function stateChange() {
             /*             imagenode.setAttribute('width', '350px');
                         imagenode.setAttribute('height', '200px'); */
             imagenode.src = regionImage;
-            let tempTextnode = document.createTextNode("The current temperature is: " + temps[2]['value'] + "  Celsius");
-            let precipitationTextnode = document.createTextNode('Is there currently any rain or other precipitation? ' + temps[3]['value']);
-            tempParagraph.appendChild(tempTextnode);
+            weatherTextNode.innerHTML = "The current temperature is: \n" + "<strong>" + temps[2]['value'] + "  Celsius" + "</strong > ";
+            //let tempTextnode = document.createTextNode("The current temperature is: " + temps[2]['value'] + "  Celsius");
+            //let precipitationTextnode = document.createTextNode('Is there currently any rain or other precipitation? ' + temps[3]['value']);
+            //tempParagraph.appendChild(tempTextnode);
+            weatherParagraph.innerHTML = "Is there currently any rain or other precipitation? \n " + "<strong>" + temps[3]['value'] + "</strong > "
             weatherTextNode.appendChild(tempParagraph);
 
 
-            weatherParagraph.appendChild(precipitationTextnode)
+            //weatherParagraph.appendChild(precipitationTextnode)
             weatherTextNode.appendChild(weatherParagraph);
 
             regionPictureNode.appendChild(imagenode);
